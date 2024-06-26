@@ -12,9 +12,12 @@ object Main {
 
     val dataFrame = sparkSession.read
       .option("header", value = true)
+      .option("inferSchema", value = true)
       .csv("data/aapl.csv")
 
     // showing top 20 rows with header
     dataFrame.show()
+
+    dataFrame.printSchema()
   }
 }
