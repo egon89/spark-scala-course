@@ -9,6 +9,8 @@ SparkSession.builder()
 ```
 - the `*` means that the Spark will create a number of executors according the available core numbers 
 
+### Add VM Options (Intellij)
+`--add-exports java.base/sun.nio.ch=ALL-UNNAMED`
 
 ---
 Reference: [Apache Spark & Scala Course](https://www.youtube.com/watch?v=l9vuR2SPGGQ&list=PLeEh_6coH9EpIwsiNiDCW0V-UjNZElF0d)
