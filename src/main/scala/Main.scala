@@ -1,6 +1,6 @@
 package com.egon.sparkvideocourse
 
-import org.apache.spark.sql.SparkSession
+import org.apache.spark.sql.{DataFrame, SparkSession}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -10,7 +10,7 @@ object Main {
       .config("spark.driver.bindAddress", "127.0.0.1")
       .getOrCreate()
 
-    val dataFrame = sparkSession.read
+    val dataFrame: DataFrame = sparkSession.read
       .option("header", value = true)
       .option("inferSchema", value = true)
       .csv("data/aapl.csv")
