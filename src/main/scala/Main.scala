@@ -1,6 +1,7 @@
 package com.egon.sparkvideocourse
 
-import org.apache.spark.sql.{DataFrame, SparkSession}
+import org.apache.spark.sql.functions.col
+import org.apache.spark.sql.{Column, DataFrame, SparkSession}
 
 object Main {
   def main(args: Array[String]): Unit = {
@@ -19,5 +20,13 @@ object Main {
     dataFrame.show()
 
     dataFrame.printSchema()
+
+    // show selected columns
+    dataFrame.select("Date", "Open", "Close").show(10)
+
+    // referencing columns
+    val dateColumn: Column = dataFrame("Date")
+    val openColumn: Column = col("Open")
+    dataFrame.select(dateColumn, openColumn).show(5)
   }
 }
