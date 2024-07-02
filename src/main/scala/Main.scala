@@ -1,6 +1,7 @@
 package com.egon.sparkvideocourse
 
 import org.apache.spark.sql.functions.col
+import org.apache.spark.sql.types.StringType
 import org.apache.spark.sql.{Column, DataFrame, SparkSession}
 
 object Main {
@@ -28,5 +29,16 @@ object Main {
     val dateColumn: Column = dataFrame("Date")
     val openColumn: Column = col("Open")
     dataFrame.select(dateColumn, openColumn).show(5)
+
+    println("> Column functions")
+    val columnIncreasedByTwo = (openColumn + 2.0).as("columnIncreasedByTwo")
+    val columnIncreasedByOne = openColumn.plus(1).as("columnIncreasedByOne")
+    val columnMultipliedByOne = (openColumn * 1).as("columnMultipliedByOne")
+    val castColumnToString = openColumn.cast(StringType).substr(0, 4).as("stringValue")
+    dataFrame.select(
+        openColumn, columnMultipliedByOne, columnIncreasedByOne, columnIncreasedByTwo, castColumnToString)
+      .filter(columnIncreasedByTwo > 4)
+      .filter(openColumn === columnMultipliedByOne)
+      .show()
   }
 }
