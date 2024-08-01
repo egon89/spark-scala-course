@@ -40,5 +40,9 @@ To infers the input schema automatically from data, we need to set the `inferSch
 - The Dataset API defines a DSL (domain-specific language, declarative, not using Scala functions)
     - that's how we tell Spark what to do
 
+## SQL Expressions
+- We can write SQL expressions as strings to create columns, which will be interpreted at runtime (no compiler safety)
+- [SQL built-in functions](https://spark.apache.org/docs/latest/api/sql/)
+
 ---
 Reference: [Apache Spark & Scala Course](https://www.youtube.com/watch?v=l9vuR2SPGGQ&list=PLeEh_6coH9EpIwsiNiDCW0V-UjNZElF0d)
