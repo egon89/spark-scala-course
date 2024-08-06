@@ -55,5 +55,22 @@ object Main {
     // we could register it as a temp view
     dataFrame.createTempView("df")
     sparkSession.sql("select * from df").show()
+
+    println("> Rename columns name, add custom column and filter")
+    val renameColumns = List(
+      col("Date").as("date"),
+      col("Open").as("open"),
+      col("High").as("high"),
+      col("Low").as("low"),
+      col("Close").as("close"),
+      col("Adj Close").as("adjClose"),
+      col("Volume").as("volume"),
+    )
+    // the _* means varargs
+    val stockData = dataFrame.select(renameColumns: _*)
+      .withColumn("diff", col("close") - col("open"))
+      .filter(col("close") > col("open") * 1.1) // stock that grew 10% in relation to the open value
+
+    stockData.show()
   }
 }
